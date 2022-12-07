@@ -1,5 +1,5 @@
-create database MetroStation;
-use MetroStation;
+create database station;
+use station;
 
 create table Station(
 stationId int primary key,
