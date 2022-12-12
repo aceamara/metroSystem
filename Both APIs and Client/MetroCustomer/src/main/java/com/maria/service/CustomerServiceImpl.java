@@ -22,6 +22,12 @@ public class CustomerServiceImpl implements CustomerService{
 	@Autowired
 	private CustomerDao dao;
 
+	@Override
+	public List<Customer> getAllCustomers() {
+		 List<Customer>listAll = dao.findAll();
+		return listAll;
+	}
+
 	
 	public Customer getCustomer(int id){
 		 return dao.findById(id).orElse(null);

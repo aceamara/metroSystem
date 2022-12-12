@@ -7,6 +7,7 @@ import com.maria.entity.CustomerInvoice;
 
 public interface CustomerService {
 
+	 List<Customer> getAllCustomers();
 	 Customer getCustomer(int id);
 	 Customer addCustomer(Customer customer);
 	 Customer deductBalance(int id, double amount);
