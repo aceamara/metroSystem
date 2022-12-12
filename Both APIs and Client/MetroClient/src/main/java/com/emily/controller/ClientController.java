@@ -25,7 +25,7 @@ public class ClientController {
 	// User inputs ID to login
 	@RequestMapping("/")
 	public ModelAndView getUserIdPage() {
-		return new ModelAndView("InputUserId");
+		return new ModelAndView("InputCustomerId");
 	}
 	
 	// Customer Account page

@@ -26,26 +26,30 @@ public class CustomerServiceImpl implements CustomerService{
 			return null;
 		}
 		else {
-			dao.save(customer);
-			return customer;
+			return dao.save(customer);
+			
 		}
 	}
+	
+	
 	
 	public Customer deductBalance(int id, double amount) {
 		Customer nCustomer =getCustomer(id); 
 			if(nCustomer !=null) {
 				nCustomer.setCustomerBalance(nCustomer.getCustomerBalance()-amount);
-				return nCustomer;
+				return dao.save(nCustomer);
 			}
 			return null;
 		
 	}
-	
 	public Customer topUpbalance(int id, double amount) {
 		Customer theCustomer = getCustomer(id);
 		if(theCustomer !=null) {
 			theCustomer.setCustomerBalance(theCustomer.getCustomerBalance()+amount);
-			return theCustomer;
+			return dao.save(theCustomer);
+			
+			
+			
 		}
 		return null;
 	}
@@ -54,7 +58,7 @@ public class CustomerServiceImpl implements CustomerService{
 		Customer customer = getCustomer(id);
 		if(customer !=null) {
 			customer.setStationId(0);
-			return customer;
+			return dao.save(customer);
 		}
 		return null;
 	}

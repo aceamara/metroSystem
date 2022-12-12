@@ -15,5 +15,4 @@ public class CustomerInvoice {
 	private String endStation;
 	private double cost;
 	private double updatedBalance;
-	
 }

@@ -1,5 +1,6 @@
 package com.maria.resource;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,7 +42,7 @@ public class CustomerResource {
 	
 	//update customer balance after top up
 	@PutMapping(path = "customers/topup/{cId}/{amount}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Customer topUpBalanceResource(@PathVariable("cID") int id, @PathVariable("amount") double amount) {
+	public Customer topUpBalanceResource(@PathVariable("cId") int id, @PathVariable("amount") double amount) {
 		return service.topUpbalance(id, amount);
 	}
 	
@@ -50,10 +51,10 @@ public class CustomerResource {
 	public Customer setStationIdToNullResource(@PathVariable("cId") int id) {
 		return service.setStationToNull(id);
 	}
-//	//get all invoices by customer id
-//	@GetMapping(path="customers/invoices/{cId}",produces = MediaType.APPLICATION_JSON_VALUE)
-//	public ListInvoices getInvoicesResource(@PathVariable ("cId") int id){
-//		return new ListInvoices( service.getCustomerInvoices(id));
-//	}
+	//get all invoices by customer id
+	@GetMapping(path="customers/invoices/{cId}",produces = MediaType.APPLICATION_JSON_VALUE)
+	public ListInvoices getInvoicesResource(@PathVariable ("cId") int id){
+		return new ListInvoices( service.getCustomerInvoices(id));
+	}
 
 }
