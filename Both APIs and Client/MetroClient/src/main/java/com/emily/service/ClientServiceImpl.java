@@ -17,7 +17,7 @@ public class ClientServiceImpl implements ClientService {
 	public Customer loginCheck(int id) {	
 		try {
 			// Call API to search for customer with inputed Id
-			Customer customer = restTemplate.getForObject("http://localhost:8084/customers/"+id, Customer.class);
+			Customer customer = restTemplate.getForObject("http://localhost:8089/customers/"+id, Customer.class);
 			return customer;
 		} catch(Exception exception) {
 			return null;
@@ -27,7 +27,7 @@ public class ClientServiceImpl implements ClientService {
 	@Override
 	public Customer addNewCustomer(Customer customer) {
 		try {
-			return restTemplate.postForObject("http://localhost:8084/customers", customer, Customer.class);
+			return restTemplate.postForObject("http://localhost:8089/customers", customer, Customer.class);
 		} catch(Exception exception) {
 			return null;
 		}
