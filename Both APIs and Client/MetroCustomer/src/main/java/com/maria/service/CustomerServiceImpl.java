@@ -1,8 +1,15 @@
 package com.maria.service;
 
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.time.LocalDate;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import com.maria.entity.Customer;
@@ -22,16 +29,14 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 	
 	public Customer addCustomer(Customer customer) {
-		if(getCustomer(customer.getCustomerId()) != null) {
-			return null;
+		if(dao.save(customer)==null) {
+			return customer;
 		}
 		else {
-			return dao.save(customer);
+			return null;
 			
 		}
 	}
-	
-	
 	
 	public Customer deductBalance(int id, double amount) {
 		Customer nCustomer =getCustomer(id); 

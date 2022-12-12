@@ -54,22 +54,16 @@ public class ClientController {
 	
 	
 	@RequestMapping("/addNewCustomer")
-	public ModelAndView addNewCustomerController(@ModelAttribute("customer") Customer newCustomer, @RequestParam("customerDateOfBirth") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+	public ModelAndView addNewCustomerController(@ModelAttribute("customer") Customer newCustomer, @RequestParam("dob") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
 		ModelAndView modelAndView = new ModelAndView();
-		Customer customer = new Customer();
 		
-		customer.setCustomerDateOfBirth(date);
-		String message;
+		newCustomer.setCustomerDateOfBirth(date);
 		
-		if (service.addNewCustomer(customer) != null) {
-			message = "New Account Created";
-			modelAndView.setViewName("AccountPage");
+		if (service.addNewCustomer(newCustomer) != null) {
+			modelAndView.setViewName("CustomerBalance");
 		} else {
-			message = "Unfortunately a new account was not created";
 			modelAndView.setViewName("InputNewCustomer");
 		}
-		
-		modelAndView.addObject("message", message);
 		
 		return modelAndView;
 		
