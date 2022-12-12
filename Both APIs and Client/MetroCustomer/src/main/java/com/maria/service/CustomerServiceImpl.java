@@ -29,13 +29,14 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 	
 	public Customer addCustomer(Customer customer) {
-		if(dao.save(customer)==null) {
-			return customer;
-		}
-		else {
-			return null;
-			
-		}
+		return dao.save(customer);
+//		if(dao.save(customer)==null) {
+//			return customer;
+//		}
+//		else {
+//			return null;
+//			
+//		}
 	}
 	
 	public Customer deductBalance(int id, double amount) {

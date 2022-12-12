@@ -62,6 +62,7 @@ public class ClientController {
 		Customer test = service.addNewCustomer(newCustomer);
 		
 		if (test != null) {
+			System.out.println("It's working");
 			modelAndView.setViewName("CustomerBalance");
 		} else {
 			modelAndView.setViewName("InputNewCustomer");
