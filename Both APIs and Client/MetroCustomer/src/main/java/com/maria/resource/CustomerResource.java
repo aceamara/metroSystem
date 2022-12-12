@@ -1,6 +1,8 @@
 package com.maria.resource;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +21,13 @@ public class CustomerResource {
 
 	@Autowired
 	private CustomerServiceImpl service;
+	
+	//get all customers
+	@GetMapping (path = "customers/all", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Customer> getAllCustomers(){
+		return service.getAllCustomers();
+	}
+
 
 	//get all customers
 	@GetMapping(path = "customers/{cId}", produces = MediaType.APPLICATION_JSON_VALUE)
