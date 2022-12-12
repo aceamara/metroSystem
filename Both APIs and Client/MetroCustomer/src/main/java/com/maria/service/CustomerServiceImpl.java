@@ -24,7 +24,7 @@ public class CustomerServiceImpl implements CustomerService{
 
 	
 	public Customer getCustomer(int id){
-		 return dao.findById(id).get();
+		 return dao.findById(id).orElse(null);
 	
 	}
 	
