@@ -27,8 +27,7 @@ public class ClientServiceImpl implements ClientService {
 	@Override
 	public Customer addNewCustomer(Customer customer) {
 		try {
-			Customer newCustomer = restTemplate.postForObject("http://localhost:8084/customers", customer, Customer.class);
-			return newCustomer;
+			return restTemplate.postForObject("http://localhost:8084/customers", customer, Customer.class);
 		} catch(Exception exception) {
 			return null;
 		}

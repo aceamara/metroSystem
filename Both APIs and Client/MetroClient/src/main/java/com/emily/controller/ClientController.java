@@ -59,7 +59,9 @@ public class ClientController {
 		
 		newCustomer.setCustomerDateOfBirth(date);
 		
-		if (service.addNewCustomer(newCustomer) != null) {
+		Customer test = service.addNewCustomer(newCustomer);
+		
+		if (test != null) {
 			modelAndView.setViewName("CustomerBalance");
 		} else {
 			modelAndView.setViewName("InputNewCustomer");
