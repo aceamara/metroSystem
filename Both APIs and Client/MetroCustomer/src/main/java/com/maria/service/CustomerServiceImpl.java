@@ -60,9 +60,19 @@ public class CustomerServiceImpl implements CustomerService{
 			
 			// Save new Customer and add £25 to account
 			customer.setCustomerBalance(25);
-			return dao.save(customer);
+			dao.save(customer);
+			return customer;
 		}
 		
+		return null;
+	}
+	
+	public Customer deleteCustomer(int id) {
+		Customer customer = getCustomer(id);
+		if(customer !=null) {
+			dao.delete(customer);
+			return customer;
+		}
 		return null;
 	}
 	
@@ -70,7 +80,8 @@ public class CustomerServiceImpl implements CustomerService{
 		Customer nCustomer =getCustomer(id); 
 			if(nCustomer !=null) {
 				nCustomer.setCustomerBalance(nCustomer.getCustomerBalance()-amount);
-				return dao.save(nCustomer);
+				dao.save(nCustomer);
+				return nCustomer;
 			}
 			return null;
 		
@@ -79,24 +90,22 @@ public class CustomerServiceImpl implements CustomerService{
 		Customer theCustomer = getCustomer(id);
 		if(theCustomer !=null) {
 			theCustomer.setCustomerBalance(theCustomer.getCustomerBalance()+amount);
-			return dao.save(theCustomer);
-			
+			 dao.save(theCustomer);
+			 return theCustomer;
 			
 			
 		}
 		return null;
 	}
 	
-	public Customer setStationToNull(int id) {
+	public Customer setStationIdToCustomer(int id, int stationId) {
 		Customer customer = getCustomer(id);
 		if(customer !=null) {
-			customer.setStationId(0);
-			return dao.save(customer);
+			customer.setStationId(stationId);
+			 dao.save(customer);
+			 return customer;
 		}
 		return null;
 	}
 	
-	public List<CustomerInvoice> getCustomerInvoices(int customerId){
-		return dao.getInvoicesByCustomerId(customerId);
-	}
 }
