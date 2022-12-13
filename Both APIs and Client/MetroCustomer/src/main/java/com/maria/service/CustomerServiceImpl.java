@@ -35,19 +35,6 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	}
 	
-//	public Customer addCustomer(Customer customer) {
-//		return dao.save(customer);
-				// REMOVED
-			//		if(dao.save(customer)==null) {
-			//			return customer;
-			//		}
-			//		else {
-			//			return null;
-			//			
-			//		}
-				// THIS
-//	}
-	
 	public Customer addCustomer(Customer customer) {
 		// Find Customer Date of Birth
 		LocalDate dob = customer.getCustomerDateOfBirth();

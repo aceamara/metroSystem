@@ -12,7 +12,6 @@ public interface CustomerService {
 	 Customer addCustomer(Customer customer);
 	 Customer deductBalance(int id, double amount);
 	 Customer topUpbalance(int id, double amount);
-	 Customer setStationToNull(int id);
-	 List<CustomerInvoice> getCustomerInvoices(int customerId);
+	 Customer setStationIdToCustomer(int id, int stationId);
 	
 }
