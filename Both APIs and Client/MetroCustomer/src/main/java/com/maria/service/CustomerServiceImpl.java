@@ -2,6 +2,7 @@ package com.maria.service;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -34,15 +35,35 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	}
 	
+//	public Customer addCustomer(Customer customer) {
+//		return dao.save(customer);
+				// REMOVED
+			//		if(dao.save(customer)==null) {
+			//			return customer;
+			//		}
+			//		else {
+			//			return null;
+			//			
+			//		}
+				// THIS
+//	}
+	
 	public Customer addCustomer(Customer customer) {
-		return dao.save(customer);
-//		if(dao.save(customer)==null) {
-//			return customer;
-//		}
-//		else {
-//			return null;
-//			
-//		}
+		// Find Customer Date of Birth
+		LocalDate dob = customer.getCustomerDateOfBirth();
+		
+		// Get current date
+		LocalDate curDate = LocalDate.now();  
+		
+		// Calculate customer age, if over 11, create customer
+		if (Period.between(dob, curDate).getYears() >= 11) {
+			
+			// Save new Customer and add £25 to account
+			customer.setCustomerBalance(25);
+			return dao.save(customer);
+		}
+		
+		return null;
 	}
 	
 	public Customer deductBalance(int id, double amount) {
