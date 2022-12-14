@@ -9,33 +9,32 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import persistence.TripDao;
 
+import java.time.LocalDate;
+
 @Service
 public class SwipeInServiceImpl implements SwipeInService {
 
+    //dependency injection
     @Autowired
     private TripDao tripdao;
 
     @Autowired
     private RestTemplate restTemplate;
 
-    //login
-    public Customer login (String customerId){
-        Customer customer = restTemplate.getForObject("http://localhost:8086/customer/"+customerId,Customer.class);
-        if (customer!=null)
-            return customer;
-        return null;
+    //logged in?
+    public Customer loggedIn(int customerId, station startingStation) {
+        Customer customer = restTemplate.getForObject("http://localhost:8086/customer/customerid" + customerId, Customer.class);
+        return customer;
     }
+    //getting customer route
+public double customerRoute (int startingPoint, int CustomerId ) {
 
-    //starting the journey
-    public trip createNewTrip (int customerId, station SwipeInStation){
-        Customer customer =restTemplate.getForObject("http://localhost:8086/customer/customerid"+customerId,Customer.class);
-        double balance = customer.getCustomerBalance();
-
-        if (balance>0 ){
-            //need code for getting the stationid
-            SwipeInStation = restTemplate.getForObject();
-        }
-    }
+    double startRoute = restTemplate.getForObject("http://localhost:8082/stations/" + startingPoint + "/" + customerId, trip.class);
+    return startRoute;
+}}
 
 
-}
+
+
+
+
