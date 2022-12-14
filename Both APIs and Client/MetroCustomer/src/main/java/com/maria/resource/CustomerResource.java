@@ -21,19 +21,17 @@ public class CustomerResource {
 
 	@Autowired
 	private CustomerServiceImpl service;
-	
-	//get all customers
-	@GetMapping (path = "customers/all", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Customer> getAllCustomers(){
-		return service.getAllCustomers();
-	}
 
-
-	//get all customers
+	//get customer by id
 	@GetMapping(path = "customers/{cId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Customer getCustomerByIdResource(@PathVariable("cId") int id) {
 
 		return service.getCustomer(id);
+	}
+	//get all customers
+	@GetMapping (path = "customers/all", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Customer> getAllCustomers(){
+		return service.getAllCustomers();
 	}
 
 	//add new customer
@@ -48,22 +46,17 @@ public class CustomerResource {
 		return service.deductBalance(id,amount);
 
 	}
-	
+
 	//update customer balance after top up
 	@PutMapping(path = "customers/topup/{cId}/{amount}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Customer topUpBalanceResource(@PathVariable("cId") int id, @PathVariable("amount") double amount) {
 		return service.topUpbalance(id, amount);
 	}
-	
-	//update customer's starting point to 0 when the journey end
-	@PutMapping(path = "customers/resetStation/{cId}",produces = MediaType.APPLICATION_JSON_VALUE)
-	public Customer setStationIdToNullResource(@PathVariable("cId") int id) {
-		return service.setStationToNull(id);
-	}
-	//get all invoices by customer id
-	@GetMapping(path="customers/invoices/{cId}",produces = MediaType.APPLICATION_JSON_VALUE)
-	public ListInvoices getInvoicesResource(@PathVariable ("cId") int id){
-		return new ListInvoices( service.getCustomerInvoices(id));
+
+	//update customer's starting point
+	@PutMapping(path = "customers/resetStation/{cId}/{sId}",produces = MediaType.APPLICATION_JSON_VALUE)
+	public Customer setStationIdToCustomerResource(@PathVariable("cId") int id, @PathVariable("sId")int stationId) {
+		return service.setStationIdToCustomer(id, stationId);
 	}
 
 }

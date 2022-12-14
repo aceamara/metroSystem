@@ -9,14 +9,13 @@ import com.maria.entity.Station;
 import com.maria.persistence.StationDao;
 
 @Service
-public class StationServiceImpls implements StationService {
+public class StationServiceImpl implements StationService {
 	@Autowired
 	private StationDao dao;
 
 	@Override
 	public Collection<Station> getAllStations() {
-		
+
 		return dao.findAll();
 	}
-
 }
