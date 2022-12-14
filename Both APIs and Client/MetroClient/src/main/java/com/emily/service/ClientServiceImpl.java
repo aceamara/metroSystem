@@ -2,6 +2,7 @@ package com.emily.service;
 
 import java.time.LocalDate;
 
+import com.emily.entity.StationList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -30,6 +31,16 @@ public class ClientServiceImpl implements ClientService {
 	public Customer addNewCustomer(Customer customer) {
 		try {
 			return restTemplate.postForObject("http://localhost:8089/customers", customer, Customer.class);
+		} catch(Exception exception) {
+			return null;
+		}
+	}
+
+	@Override
+	public StationList getAllStations() {
+		try {
+			StationList allStations = restTemplate.getForObject("http://localhost:8082/allStations", StationList.class);
+			return allStations;
 		} catch(Exception exception) {
 			return null;
 		}
