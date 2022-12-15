@@ -1,21 +1,21 @@
 package com.emily.entity;
 
-import java.time.LocalDate;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class Customer {
-	
-	private int customerId;
+@NoArgsConstructor
+@ToString
+
+public class Bill {
 	private String customerFirstName;
 	private String customerSurname;
-	private String customerEmail;
-	private LocalDate customerDateOfBirth;
-	private double customerBalance;
-	
+	private String startingStation;
+	private String endStation;
+	private double totalPrice;
+	private double newBalance;
+
 }
