@@ -103,7 +103,6 @@ public class ClientController {
 //		
 //		modelAndView.addObject("trip", trip);
 		modelAndView.setViewName("viewBalance2");
-
 		
 		return modelAndView;
 	}	
