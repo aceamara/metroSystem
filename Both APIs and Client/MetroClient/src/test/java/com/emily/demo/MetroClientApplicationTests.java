@@ -69,16 +69,21 @@ class MetroClientApplicationTests {
 //	}
 	
 	
-	@Order(4)
+	@Order(2)
 	public void getAllStationsTest() {
 		StationList myList = null;
 		when(restTemplate.getForObject("http://localhost:8082/allStations", StationList.class)).thenReturn(myList);
 		assertEquals(service.getAllStations(), myList);
 	}
 	
-	@Order(5)
+	@Order(3)
 	public void deductCustomerBalance() {
+		LocalDate dob = LocalDate.of(1997, 8, 17);
+		Customer customer = new Customer(101, "Bobby", "Moore", "bobby@gmail.com",dob,100);
 		
+		Customer customerDeducted = new Customer(500, "Test", "Customer", "test@customer.com",dob,95);
+		
+		assertEquals(service.deductCustomerBalance(101, 5), customerDeducted);
 	}
 
 }

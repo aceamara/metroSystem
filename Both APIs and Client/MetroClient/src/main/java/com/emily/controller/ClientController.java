@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 
 import com.emily.entity.Station;
 import com.emily.entity.StationList;
+import com.emily.entity.Trip;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -28,7 +30,7 @@ public class ClientController {
 	// Ask user to inputs their ID to login or they can register a new account.
 	@RequestMapping("/")
 	public ModelAndView getUserIdPage() {
-		return new ModelAndView("signInOrRegisterPage" ,"customer", new Customer());
+		return new ModelAndView("loginPage");
 	}
 	
 	@RequestMapping("/addNewCustomer")
@@ -70,11 +72,12 @@ public class ClientController {
 			modelAndView.addObject("stationObj",new Station());
 		} else {
 			modelAndView.addObject("message", "No account found with that Id, Please try again");
-			modelAndView.setViewName("InputUserId");
+			modelAndView.setViewName("loginPage");
 		}
 
 		Collection<Station> stationList = service.getAllStations(); //List of all stations
 		modelAndView.addObject("StationList", stationList); //adds the station object to website.
+		
 		return modelAndView; //returns everything
 	}
 
@@ -84,6 +87,24 @@ public class ClientController {
 		return stationList; //returns the station list
 	}
 
+	
+	@RequestMapping("/tapIn")
+//	public ModelAndView tapInController(@RequestParam("stationObj") Station station, HttpSession session) {
+	public ModelAndView tapInController() {
+		ModelAndView modelAndView = new ModelAndView();
+		
+//		Customer customer = (Customer) session.getAttribute("customer");
+//		
+//		String stationName = station.getStationName();
+//		
+//		Trip trip = service.tapIn(customer, station.getStationId());
+//		 
+////		modelAndView.addObject("message", "You are travelling to "+station.getStationName());
+//		
+//		modelAndView.addObject("trip", trip);
+		modelAndView.setViewName("viewBalance2");
 
-
+		
+		return modelAndView;
+	}	
 }
