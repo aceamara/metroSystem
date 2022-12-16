@@ -89,19 +89,21 @@ public class ClientController {
 
 	
 	@RequestMapping("/tapIn")
-//	public ModelAndView tapInController(@RequestParam("stationObj") Station station, HttpSession session) {
-	public ModelAndView tapInController() {
+	public ModelAndView tapInController(@ModelAttribute("stationObj") Station station, HttpSession session) {
+//	public ModelAndView tapInController() {
 		ModelAndView modelAndView = new ModelAndView();
 		
 //		Customer customer = (Customer) session.getAttribute("customer");
 //		
-//		String stationName = station.getStationName();
-//		
+		int stationId = station.getStationId();
+		System.out.println(stationId);
+		session.setAttribute("stationId", stationId);
 //		Trip trip = service.tapIn(customer, station.getStationId());
 //		 
 ////		modelAndView.addObject("message", "You are travelling to "+station.getStationName());
 //		
 //		modelAndView.addObject("trip", trip);
+		modelAndView.addObject("stationObj", new Station());
 		modelAndView.setViewName("viewBalance2");
 		
 		return modelAndView;
