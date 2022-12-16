@@ -55,7 +55,6 @@
                     arrow_downward
                 </span>
         
-        
     </article>
   </form>
 
@@ -71,6 +70,12 @@
 </article>
 
 <h2 th:text="${message}"></h2>
+
+<form action="./transferFunds">
+	Enter Recepient Account ID : <input type="number" name="accountId"><br><br>
+	Enter Amount to Transfer : <input type="number" name="amount"><br><br>
+	<input type="submit" value="Transfer">
+</form>
 
 <article id="side4" align="center">
     <button id="addFunds"> Balance low? Click to add funds
